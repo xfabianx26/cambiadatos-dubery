@@ -16,5 +16,4 @@ export class MockService {
   getCars(): Observable<Car[]> {
     return this.httpClient.get<Car[]>('assets/cars.json');
   }
-
 }

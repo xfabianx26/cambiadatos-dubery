@@ -3,16 +3,17 @@
     <h2>Cambia Datos</h2>
     <div class="col-4 mx-auto">
       <div class="input-group">
-        
-        <select class="form-select form-select-sm no-outline" aria-label="form-select-sm" >
-        <option value="" disabled selected>Seleccione una opción</option>
-          <option *ngFor="let car of cars" [ngValue]="car">{{ car.plateNumber }} - {{ car.model }}</option>
+
+        <select (change)="onModelChange($event)" class="form-select form-select-sm no-outline"
+          aria-label="form-select-sm">
+          <option value="" disabled selected>Seleccione una opción</option>
+          <option *ngFor="let model of models" [ngValue]="model"> {{ model }}</option>
         </select>
 
 
         <div class="input-group-append" style="margin-left: 10px;">
           <!-- Añado el disparador del modal aquí -->
-          <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" [disabled]="!selectedModel">
             <span class="material-symbols-outlined">search</span>
           </button>
         </div>
@@ -26,22 +27,45 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title align-self-center" id="exampleModalLabel">Buscar por placa</h5>
+        <h5 class="modal-title align-self-center" id="exampleModalLabel">Buscar por modelo: {{ selectedModel }}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <label for="plateNumber">Por favor, ingrese su placa:</label>
         <div class="input-group mb-3">
-          <input type="text" class="form-control no-outline" id="plateNumber" placeholder="Número de placa">
-          <button class="btn btn-outline-secondary" type="button" id="searchButton">
-            <span class="material-symbols-outlined">search</span>
+          <input type="text" #plateNumber class="form-control no-outline" id="plateNumber"
+            placeholder="Número de placa">
+          <button class="btn btn-outline-secondary" type="button" id="searchButton"
+            (click)="searchCarByPlate(plateNumber.value)">
+            <span class="material-symbols-outlined no-outline">search</span>
           </button>
         </div>
+        <!-- Mensaje de error -->
+        <div *ngIf="plateNotFound" class="alert alert-danger" role="alert">
+          Placa no encontrada
+        </div>
+
+
+        <div *ngIf="selectedCar">
+          <div class="mb-2">
+            <button class="btn btn-outline-primary" (click)="editCar(selectedCar)"><span
+                class="material-symbols-outlined">
+                edit
+              </span></button>
+            <button class="btn btn-outline-danger ms-2" (click)="deleteCar(selectedCar)"><span
+                class="material-symbols-outlined">
+                delete
+              </span> </button>
+          </div>
+
+
+          <p><strong>Modelo:</strong> {{ selectedCar.model }}</p>
+          <p><strong>Color:</strong> {{ selectedCar.color }}</p>
+          <p><strong>Año:</strong> {{ selectedCar.year }}</p>
+          <p><strong>Tipo de combustible:</strong> {{ selectedCar.fuelType }}</p>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Guardar cambios</button>
-      </div>
+
     </div>
   </div>
 </div>

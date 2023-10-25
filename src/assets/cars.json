@@ -1,22 +1,37 @@
 [
   {
     "plateNumber": "ABC123",
-    "model": "Toyota Corolla"
+    "model": "Toyota Corolla",
+    "color": "Blue",
+    "year": 2020,
+    "fuelType": "Gasoline"
   },
   {
     "plateNumber": "XYZ789",
-    "model": "Honda Civic"
+    "model": "Honda Civic",
+    "color": "Red",
+    "year": 2019,
+    "fuelType": "Gasoline"
   },
   {
     "plateNumber": "JHK456",
-    "model": "Ford Focus"
+    "model": "Ford Focus",
+    "color": "White",
+    "year": 2018,
+    "fuelType": "Diesel"
   },
   {
     "plateNumber": "LMN112",
-    "model": "Chevrolet Malibu"
+    "model": "Chevrolet Malibu",
+    "color": "Black",
+    "year": 2021,
+    "fuelType": "Gasoline"
   },
   {
     "plateNumber": "QRS900",
-    "model": "BMW 320i"
+    "model": "BMW 320i",
+    "color": "Gray",
+    "year": 2022,
+    "fuelType": "Gasoline"
   }
 ]
