@@ -1,62 +1,47 @@
 <div class="container text-center">
   <div class="col-12 mt-4">
     <h2>Cambia Datos</h2>
-
     <div class="col-4 mx-auto">
       <div class="input-group">
+        
         <select class="form-select form-select-sm no-outline" aria-label="form-select-sm" >
-          <option value="1">Oneeeee</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+        <option value="" disabled selected>Seleccione una opción</option>
+          <option *ngFor="let car of cars" [ngValue]="car">{{ car.plateNumber }} - {{ car.model }}</option>
         </select>
+
+
         <div class="input-group-append" style="margin-left: 10px;">
-          <button class="btn btn-outline-secondary" type="button">
-            <span class="material-symbols-outlined" data-bs-toggle="modal" data-bs-target="#exampleModal" >search</span>
+          <!-- Añado el disparador del modal aquí -->
+          <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <span class="material-symbols-outlined">search</span>
           </button>
         </div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- Añado el Modal  -->
-
-
-
+<!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title align-self-center" id="exampleModalLabel">Ingreso de datos básicos</h5>
+        <h5 class="modal-title align-self-center" id="exampleModalLabel">Buscar por placa</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>hola</p>
-        <p>{{carInfo.model}}</p>
+        <label for="plateNumber">Por favor, ingrese su placa:</label>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control no-outline" id="plateNumber" placeholder="Número de placa">
+          <button class="btn btn-outline-secondary" type="button" id="searchButton">
+            <span class="material-symbols-outlined">search</span>
+          </button>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Guardar cambios</button>
       </div>
     </div>
   </div>
 </div>
-
-<!-- <div class="modal fade" id="carModal" tabindex="-1" aria-labelledby="carModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="carModalLabel">Información del Carro</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Placa: {{ carInfo.plate }}</p>
-        <p>Año: {{ carInfo.year }}</p>
-        <p>Color: {{ carInfo.color }}</p>
-        <p>Modelo: {{ carInfo.model }}</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-      </div>
-    </div>
-  </div>
-</div> -->

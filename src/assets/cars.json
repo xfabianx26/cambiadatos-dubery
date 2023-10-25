@@ -1,0 +1,22 @@
+[
+  {
+    "plateNumber": "ABC123",
+    "model": "Toyota Corolla"
+  },
+  {
+    "plateNumber": "XYZ789",
+    "model": "Honda Civic"
+  },
+  {
+    "plateNumber": "JHK456",
+    "model": "Ford Focus"
+  },
+  {
+    "plateNumber": "LMN112",
+    "model": "Chevrolet Malibu"
+  },
+  {
+    "plateNumber": "QRS900",
+    "model": "BMW 320i"
+  }
+]
