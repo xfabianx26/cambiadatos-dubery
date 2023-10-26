@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Car } from 'src/app/interfaces/car.model';
 import { MockService } from 'src/app/services/mock.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'dropdownlist',
@@ -10,11 +12,16 @@ import { MockService } from 'src/app/services/mock.service';
 })
 export class DropdownlistComponent {
 
+
+  @ViewChild('closeButton') closeButton!: ElementRef;
+
   models: string[] = [];
   cars: Car[] = [];
   selectedCar: Car | null = null;
   selectedModel: string = '';
   public plateNotFound: boolean = false;
+  public isEditing: boolean = false;
+
 
   constructor(private carService: MockService) {}
 
@@ -61,19 +68,35 @@ searchCarByPlate(plate: string): void {
 
 
 editCar(car: Car): void {
-/*   const index = this.cars.findIndex(c => c.plateNumber === car.plateNumber);
+  const index = this.cars.findIndex(c => c.plateNumber === car.plateNumber);
+
   if (index !== -1) {
-    // Actualiza el coche. Esto es solo un ejemplo; puedes reemplazarlo con lógica más compleja si es necesario.
     this.cars[index] = car;
-  } */
+    Swal.fire({
+      title: 'Éxito!',
+      text: 'Coche editado con éxito.',
+      icon: 'success',
+      confirmButtonText: 'OK'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.closeButton.nativeElement.click();
+      }
+    });
+  } else {
+    Swal.fire({
+      title: 'Error!',
+      text: 'No se pudo encontrar el coche para editar.',
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });
+  }
 }
 
 
-deleteCar(car: Car): void {
-/*   const index = this.cars.findIndex(c => c.plateNumber === car.plateNumber);
-  if (index !== -1) {
-    this.cars.splice(index, 1);
-  } */
-}
+
+
+
 
 }
+
+
